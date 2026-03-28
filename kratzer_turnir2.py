@@ -3,18 +3,16 @@ import pandas as pd
 import random
 import time
 from streamlit_autorefresh import st_autorefresh
-from supabase import create_client, ClientOptions
+from supabase import create_client
 
 # ==============================================================================
-# 0. SUPABASE KONEKCIJA (PROTIV RESETIRANJA U PONOĆ)
+# 0. SUPABASE KONEKCIJA (BACK TO BASICS)
 # ==============================================================================
-# Podaci se povlače iz Streamlit Secrets (Settings > Secrets)
 url = st.secrets["SUPABASE_URL"]
 key = st.secrets["SUPABASE_KEY"]
 
-# POPRAVAK ZA TYPEERROR: Eksplicitno definiramo opcije za stabilnu konekciju
-options = ClientOptions(postgrest_client_timeout=10, gotrue_client_timeout=10)
-supabase = create_client(url, key, options=options)
+# Ova linija sada mijenja problematičnu liniju 16 i 17
+supabase = create_client(url, key)
 
 def ucitaj_iz_baze():
     try:
