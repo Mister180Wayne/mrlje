@@ -11,7 +11,10 @@ from supabase import create_client, ClientOptions
 # Podaci se povlače iz Streamlit Secrets (Settings > Secrets)
 url = st.secrets["SUPABASE_URL"]
 key = st.secrets["SUPABASE_KEY"]
-supabase = create_client(url, key)
+
+# POPRAVAK ZA TYPEERROR: Eksplicitno definiramo opcije za stabilnu konekciju
+options = ClientOptions(postgrest_client_timeout=10, gotrue_client_timeout=10)
+supabase = create_client(url, key, options=options)
 
 def ucitaj_iz_baze():
     try:
