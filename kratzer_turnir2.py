@@ -3,7 +3,7 @@ import pandas as pd
 import random
 import time
 from streamlit_autorefresh import st_autorefresh
-from supabase import create_client
+from supabase import create_client, ClientOptions
 
 # ==============================================================================
 # 0. SUPABASE KONEKCIJA (PROTIV RESETIRANJA U PONOĆ)
